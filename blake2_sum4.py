@@ -23,11 +23,11 @@ def calculate_blake2b(file_path, verbose=False, chunk_size=io.DEFAULT_BUFFER_SIZ
                 blake2.update(chunk)
 
         elapsed_time = time.time() - start_time
-        logging.info(f"✅ Completed: {file_path.name} | Size: {file_size} bytes | Time: {elapsed_time:.2f}s")
+        logging.info(f" Completed: {file_path.name} | Size: {file_size} bytes | Time: {elapsed_time:.2f}s")
         return blake2.hexdigest()
 
     except (OSError, IOError) as e:
-        logging.error(f"❌ Error reading file {file_path}: {e}")
+        logging.error(f" Error reading file {file_path}: {e}")
         return None
 
 def check_blake2_sums(directory, verbose=False, ext='.iso', chunk_size=io.DEFAULT_BUFFER_SIZE):
@@ -35,7 +35,7 @@ def check_blake2_sums(directory, verbose=False, ext='.iso', chunk_size=io.DEFAUL
     dir_path = pathlib.Path(directory)
 
     if not dir_path.is_dir():
-        logging.error(f"❌ The specified path '{directory}' is not a valid directory.")
+        logging.error(f" The specified path '{directory}' is not a valid directory.")
         return
 
     with ThreadPoolExecutor() as executor:
